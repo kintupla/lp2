@@ -18,7 +18,7 @@ class Hello2DFrame extends JFrame {
             }
         );
         this.setTitle("Java2D - Hello World!");
-        this.setSize(350, 350);
+        this.setSize(450, 450);
         this.setVisible(true);
     }
 
@@ -30,5 +30,6 @@ class Hello2DFrame extends JFrame {
         int h = getHeight();
         g2d.drawLine(0,0, w,h);
         g2d.drawLine(0,h, w,0);
+        getContentPane().setBackground(new Color(106,90,205));
     }
 }
