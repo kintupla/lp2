@@ -1,5 +1,2 @@
-# lp2  
+# Linguagem de programação 2  
 ## exercícios
-
-
-> Olá  
