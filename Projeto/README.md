@@ -18,6 +18,10 @@ ACIMA, ABAIXO, ESQUERDA, DIREITA: Movem a figura de acordo com a tecla pressiona
 
 VIRGULA e PONTO: alteram a cor da borda das figuras
 
+Tecla "-": Diminuir o tamanho da Figura
+
+Tecla "+": Aumenta o Tamanho da Figura
+
 PAGEUP e PAGEDOWN: alteram a cor do interior das figuras
 
 Redimensionar:  Basta clicar no canto inferior direito da figura
