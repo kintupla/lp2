@@ -3,30 +3,75 @@ package figures;
 import java.awt.*;
 
 public class Rect extends Figure {
-    int width, height;
+    Rectangle rectangle;
 
-    public Rect (int x, int y, int width, int height, int rFill, int gFill, int bFill, int stroke, int rStroke, int gStroke, int bStroke) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.rFill = rFill;
-        this.gFill = gFill;
-        this.bFill = bFill;
-        this.stroke = stroke;
-        this.rStroke = rStroke;
-        this.gStroke = gStroke;
-        this.bStroke = bStroke;
+    public Rect(int x, int y, int width, int height, Color borderColor, Color fillColor) {
+        super(x, y, width, height, borderColor, fillColor);
+
+        this.rectangle = new Rectangle(this.x, this.y, this.width, this.height);
     }
 
-    public void paint (Graphics g) {
+    public Rect(int x, int y, int width, int height) {
+        super(x, y, width, height, Color.BLACK, Color.WHITE);
+
+        this.rectangle = new Rectangle(this.x, this.y, this.width, this.height);
+    }
+
+    @Override
+    public void Paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
-        g2d.setColor(new Color(this.rFill, this.gFill, this.bFill));
-        g2d.fillRect(this.x,this.y, this.width,this.height);
+        g2d.setStroke(new BasicStroke(defaultThickness));
 
-        g2d.setColor(new Color(this.rStroke, this.gStroke, this.bStroke));
-        g2d.setStroke(new BasicStroke(this.stroke));
-        g2d.drawRect(this.x,this.y, this.width,this.height);
+        g2d.setColor(fillColor);
+        g2d.fillRect(this.x, this.y, this.width, this.height);
+
+        g2d.setColor(borderColor);
+        g2d.drawRect(this.x, this.y, this.width, this.height);
+
+    }
+
+    public boolean DentroFigura(Point mousePointPosition) {
+        return (mousePointPosition.x >= this.x) && (mousePointPosition.x <= this.x + this.width)
+                && (mousePointPosition.y >= this.y) && (mousePointPosition.y <= this.y + this.height);
+    }
+
+    public void RedSelection(Graphics g) {
+        super.RedSelection(g);
+    }
+
+    @Override
+    public void move(int dx, int dy) {
+        super.move(dx, dy);
+    }
+
+    @Override
+    public void scale(int dx, int dy) {
+        this.width += dx;
+        this.height += dy;
+
+        if (this.width < 3) {
+            this.width -= dx;
+            this.height -= dy;
+        }
+    }
+
+    @Override
+    public void dragFigure(Point mousePointPosition, int dx, int dy) {
+        Point pointToResize = new Point(this.x + this.width, this.y + this.height);
+
+        if (pointToResize.distance(mousePointPosition) <= 5) {
+            if (this.width + dx >= 10) {
+                this.width += dx;
+            }
+
+            if (this.height + dy >= 10) {
+                this.height += dy;
+            }
+        } else {
+            move(dx, dy);
+        }
+
+        this.rectangle.setFrame(this.x, this.y, this.width, this.height);
     }
 }
