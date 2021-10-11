@@ -2,7 +2,7 @@
 
  É um editor que desenha retângulos, elipses, triângulos e segmentos de reta, permite redimensionar, mover, deletar e pintar figura através das teclas.
  
-##Save
+## Save
  Todas as figuras feitas são salvas em um arquivo após o programa ser fechado e automaticamente carregados na abertura.
 
 ## Comandos para as Figuras
