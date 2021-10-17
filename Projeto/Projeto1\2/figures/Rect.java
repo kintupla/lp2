@@ -25,23 +25,35 @@ public class Rect extends Figure {
 
         g2d.setColor(fillColor);
         g2d.fillRect(this.x, this.y, this.width, this.height);
-        
+
         g2d.setColor(borderColor);
         g2d.drawRect(this.x, this.y, this.width, this.height);
-        
+
     }
 
-    public boolean IsInsideFigure(Point mousePointPosition) {
-        return (mousePointPosition.x >= this.x) && (mousePointPosition.x <= this.x + this.width) && (mousePointPosition.y >= this.y) && (mousePointPosition.y <= this.y + this.height);
+    public boolean DentroFigura(Point mousePointPosition) {
+        return (mousePointPosition.x >= this.x) && (mousePointPosition.x <= this.x + this.width)
+                && (mousePointPosition.y >= this.y) && (mousePointPosition.y <= this.y + this.height);
     }
 
-    public void applyRedSelection(Graphics g) {
-        super.applyRedSelection(g);
-    }   
+    public void RedSelection(Graphics g) {
+        super.RedSelection(g);
+    }
 
     @Override
     public void move(int dx, int dy) {
         super.move(dx, dy);
+    }
+
+    @Override
+    public void scale(int dx, int dy) {
+        this.width += dx;
+        this.height += dy;
+
+        if (this.width < 3) {
+            this.width -= dx;
+            this.height -= dy;
+        }
     }
 
     @Override
