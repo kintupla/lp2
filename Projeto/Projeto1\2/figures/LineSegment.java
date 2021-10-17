@@ -9,18 +9,18 @@ public class LineSegment extends Figure {
     private int size;
     private Color borderColor;
     Line2D lineSegment;
-    
+
     public LineSegment(int x1, int y1, int size, Color borderColor) {
         super(0, 0, 0, 0, borderColor, borderColor);
 
         this.x1 = x1;
         this.y1 = y1;
-        this.x2 = x1 + 2*size;
+        this.x2 = x1 + 2 * size;
         this.y2 = y1;
         this.size = size;
         this.borderColor = borderColor;
 
-        this.lineSegment = new Line2D.Float(this.x1, this.y1, this.x2, this.y2); 
+        this.lineSegment = new Line2D.Float(this.x1, this.y1, this.x2, this.y2);
     }
 
     public LineSegment(int x1, int y1, int size) {
@@ -28,18 +28,18 @@ public class LineSegment extends Figure {
 
         this.x1 = x1;
         this.y1 = y1;
-        this.x2 = x1 + 2*size;
+        this.x2 = x1 + 2 * size;
         this.y2 = y1;
         this.size = size;
         this.borderColor = Color.BLACK;
 
-        this.lineSegment = new Line2D.Float(this.x1, this.y1, this.x2, this.y2); 
+        this.lineSegment = new Line2D.Float(this.x1, this.y1, this.x2, this.y2);
     }
 
     @Override
     public void Paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        
+
         g2d.setStroke(new BasicStroke(2.5f));
 
         g2d.setColor(borderColor);
@@ -47,24 +47,35 @@ public class LineSegment extends Figure {
     }
 
     @Override
-    public boolean IsInsideFigure(Point mousePointPosition) {
+    public boolean DentroFigura(Point mousePointPosition) {
         return this.lineSegment.ptSegDist(mousePointPosition) <= 5;
     }
 
     @Override
-    public void applyRedSelection(Graphics g) {
+    public void scale(int dx, int dy) {
+        this.width += dx;
+        this.height += dy;
+
+        if (this.width < 3) {
+            this.width -= dx;
+            this.height -= dy;
+        }
+    }
+
+    @Override
+    public void RedSelection(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.setStroke(new BasicStroke(defaultThickness));
 
         g2d.setColor(Color.RED);
         g2d.drawLine(this.x1, this.y1, this.x2, this.y2);
-    }   
+    }
 
     @Override
     public void move(int dx, int dy) {
         super.move(0, 0);
-        
+
         this.x1 += dx;
         this.x2 += dx;
 
