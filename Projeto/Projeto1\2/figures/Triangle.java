@@ -25,14 +25,14 @@ public class Triangle extends Figure {
         int x3 = x1 + this.width;
         int y3 = y1 + this.height;
 
-        int xValues[] = {x1, x2, x3};
-        int yValues[] = {y1, y2, y3};
+        int xValues[] = { x1, x2, x3 };
+        int yValues[] = { y1, y2, y3 };
 
         this.xArray = xValues;
         this.yArray = yValues;
-        
+
         this.triangle = new Polygon(xArray, yArray, 3);
-        
+
         g2d.setStroke(new BasicStroke(defaultThickness));
 
         g2d.setColor(fillColor);
@@ -43,23 +43,34 @@ public class Triangle extends Figure {
     }
 
     @Override
-    public boolean IsInsideFigure(Point mousePointPosition) {
+    public boolean DentroFigura(Point mousePointPosition) {
         return this.triangle.contains(mousePointPosition);
     }
 
     @Override
-    public void applyRedSelection(Graphics g) {
+    public void RedSelection(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
         g2d.setStroke(new BasicStroke(defaultThickness));
 
         g2d.setColor(Color.RED);
         g2d.drawPolygon(this.xArray, this.yArray, 3);
-    }   
+    }
 
     @Override
     public void move(int dx, int dy) {
         super.move(dx, dy);
+    }
+
+    @Override
+    public void scale(int dx, int dy) {
+        this.width += dx;
+        this.height += dy;
+
+        if (this.width < 3) {
+            this.width -= dx;
+            this.height -= dy;
+        }
     }
 
     @Override
@@ -85,8 +96,8 @@ public class Triangle extends Figure {
         int x3 = x1 + this.width;
         int y3 = y1 + this.height;
 
-        int xValues[] = {x1, x2, x3};
-        int yValues[] = {y1, y2, y3};
+        int xValues[] = { x1, x2, x3 };
+        int yValues[] = { y1, y2, y3 };
 
         this.xArray = xValues;
         this.yArray = yValues;
