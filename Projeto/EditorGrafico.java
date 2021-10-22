@@ -26,6 +26,22 @@ class PackFrame extends JFrame {
             }
         });
 
+        this.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent evt) {
+                focus = null;
+                if (evt.getButton() == 1) {
+                    Point mousePosition = new Point(evt.getX(), evt.getY());
+                    for (Figure figure : figs) {
+                        if (figure.clicado(mousePosition) == true) {
+                            focus = figure;
+                        }
+                    }
+                    mouseMoved(evt);
+                    repaint();
+                }
+            }
+        });
+
         this.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent keyEvent) {
                 if (keyEvent.getKeyChar() == 'r') {
@@ -36,6 +52,7 @@ class PackFrame extends JFrame {
                 repaint();
             }
         });
+
         this.setTitle("Editor Grafico");
         this.setSize(500, 500);
     }
@@ -44,7 +61,9 @@ class PackFrame extends JFrame {
         super.paint(g);
         for (Figure fig : this.figs) {
             fig.Paint(g);
-
+            if (fig == focus) {
+                focus.focusdafigura(g);
+            }
         }
     }
 
