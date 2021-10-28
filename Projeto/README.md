@@ -17,14 +17,12 @@ L: cria um segmento de reta
 
 ACIMA, ABAIXO, ESQUERDA, DIREITA: Movem a figura de acordo com a tecla pressionada
 
-VIRGULA e PONTO: alteram a cor da borda das figuras
-
 Tecla "-": Diminuir o tamanho da Figura
 
 Tecla "+": Aumenta o Tamanho da Figura
 
-F1 e F2: alteram a cor do interior das figuras
+Teclado "/" : alteram a cor do interior das figuras
 
-Redimensionar:  Basta clicar no canto inferior direito da figura
+Teclado "*" : alteram a cor da borda das figuras
 
 DEL: deleta a figura em foco
