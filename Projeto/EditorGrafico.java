@@ -16,8 +16,8 @@ class EditorGrafico {
 class PackFrame extends JFrame {
     ArrayList<Figure> figs = new ArrayList<Figure>();
     Figure focus = null;
-
     Point mousePosition = new Point(0, 0);
+    Random rand = new Random();
 
     PackFrame() {
         this.addWindowListener(new WindowAdapter() {
@@ -35,6 +35,11 @@ class PackFrame extends JFrame {
                         if (figure.clicado(mousePosition) == true) {
                             focus = figure;
                         }
+
+                        if (focus != null) {
+                            figs.remove(focus);
+                            figs.add(focus);
+                        }
                     }
                     mouseMoved(evt);
                     repaint();
@@ -42,14 +47,51 @@ class PackFrame extends JFrame {
             }
         });
 
+        this.addMouseMotionListener(new MouseAdapter() {
+            public void mouseMoved(MouseEvent evt) { // https://docs.oracle.com/javase/tutorial/uiswing/events/mousemotionlistener.html
+                mousePosition.x = evt.getX();
+                mousePosition.y = evt.getY();
+            }
+
+            public void mouseDragged(MouseEvent evt) {
+                if (focus != null) {
+                    int dx = evt.getX() - mousePosition.x;
+                    int dy = evt.getY() - mousePosition.y;
+                    focus.drag(dx, dy);
+                }
+                mouseMoved(evt);
+                repaint();
+            }
+
+        });
+        // https://precisoestudarsempre.blogspot.com/2016/01/gerando-cores-aleatorias-com-java.html
         this.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent keyEvent) {
+                int r = rand.nextInt(255);
+                int g = rand.nextInt(255);
+                int b = rand.nextInt(255);
+                int rContorno = rand.nextInt(255);
+                int gContorno = rand.nextInt(255);
+                int bContorno = rand.nextInt(255);
+
                 if (keyEvent.getKeyChar() == 'r') {
-                    Rect rectangle = new Rect(mousePosition.x, mousePosition.y, 100, 100);
+                    Rect rectangle = new Rect(mousePosition.x, mousePosition.y, 100, 100, 255, 255, 255, 0, 0, 0, 3);
                     figs.add(rectangle);
+                } else if (focus != null) {
+                    if (keyEvent.getKeyChar() == '/') {
+                        focus.PreenchimentoAleatorio(r, g, b);
+
+                    } else if (keyEvent.getKeyChar() == '*') {
+                        focus.ContornoAleatorio(rContorno, gContorno, bContorno);
+                    } else if (keyEvent.getKeyChar() == '+') {
+                        focus.AumentarOuDiminuir(4, 4);
+                    } else if (keyEvent.getKeyChar() == '-') {
+                        focus.AumentarOuDiminuir(-4, -4);
+                    }
                 }
 
                 repaint();
+
             }
         });
 
