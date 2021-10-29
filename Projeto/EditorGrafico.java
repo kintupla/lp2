@@ -95,8 +95,16 @@ class PackFrame extends JFrame {
                         focus.AumentarOuDiminuir(4, 4);
                     } else if (keyEvent.getKeyChar() == '-') {
                         focus.AumentarOuDiminuir(-4, -4);
-                    } else if (keyEvent.getKeyCode() == KeyEvent.VK_UP) {
+                    } else if (keyEvent.getKeyCode() == KeyEvent.VK_UP) { // https://www.demo2s.com/java/java-keyevent-vk-up.html
                         focus.drag(0, -10);
+                    } else if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN) {
+                        focus.drag(0, 10);
+                    } else if (keyEvent.getKeyCode() == KeyEvent.VK_LEFT) {
+                        focus.drag(-10, 0);
+                    } else if (keyEvent.getKeyCode() == KeyEvent.VK_DELETE) {
+                        figs.remove(focus);
+                    } else if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT) {
+                        focus.drag(10, 0);
                     }
                 }
 
