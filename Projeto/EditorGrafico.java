@@ -74,9 +74,17 @@ class PackFrame extends JFrame {
                 int gContorno = rand.nextInt(255);
                 int bContorno = rand.nextInt(255);
 
-                if (keyEvent.getKeyChar() == 'r') {
+                if (keyEvent.getKeyChar() == 'r') { // Adiciona para maiúsculo ou minúscula
                     Rect rectangle = new Rect(mousePosition.x, mousePosition.y, 100, 100, 255, 255, 255, 0, 0, 0, 3);
                     figs.add(rectangle);
+                } else if (keyEvent.getKeyChar() == 'e') {
+                    Ellipse ellipse = new Ellipse(mousePosition.x, mousePosition.y, 100, 100, 255, 255, 255, 0, 0, 0,
+                            3);
+                    figs.add(ellipse);
+                } else if (keyEvent.getKeyChar() == 't') {
+                    Triangle triangle = new Triangle(mousePosition.x, mousePosition.y, 100, 100, 255, 255, 255, 0, 0, 0,
+                            3);
+                    figs.add(triangle);
                 } else if (focus != null) {
                     if (keyEvent.getKeyChar() == '/') {
                         focus.PreenchimentoAleatorio(r, g, b);
