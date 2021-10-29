@@ -95,6 +95,8 @@ class PackFrame extends JFrame {
                         focus.AumentarOuDiminuir(4, 4);
                     } else if (keyEvent.getKeyChar() == '-') {
                         focus.AumentarOuDiminuir(-4, -4);
+                    } else if (keyEvent.getKeyCode() == KeyEvent.VK_UP) {
+                        focus.drag(0, -10);
                     }
                 }
 
