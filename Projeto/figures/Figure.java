@@ -1,6 +1,7 @@
 package figures;
 
 import java.awt.*;
+import java.awt.Graphics;
 import java.io.*;
 import interfaces.*;
 
@@ -31,20 +32,14 @@ public abstract class Figure implements IVisible {
 
 	public abstract void focusdafigura(Graphics g);
 
-	public boolean clicado(Point mousePointPosition) {
-		return (mousePointPosition.x <= this.x + this.w) && (mousePointPosition.x >= this.x)
-				&& (mousePointPosition.y >= this.y) && (mousePointPosition.y <= this.y + this.h);
-	}
+	public abstract boolean clicado(Point mousePointPosition);
 
 	public void drag(int DX, int DY) {
 		this.x += DX;
 		this.y += DY;
 	}
 
-	public void AumentarOuDiminuir(int ADw, int ADh) {
-		this.w += ADw;
-		this.h += ADh;
-	}
+	public abstract void AumentarOuDiminuir(int ADw, int ADh);
 
 	public void PreenchimentoAleatorio(int r, int g, int b) {
 		this.r = r;
