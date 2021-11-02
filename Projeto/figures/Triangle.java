@@ -33,6 +33,16 @@ public class Triangle extends Figure {
 
     }
 
+    public boolean clicado(Point mousePointPosition) {
+        return (mousePointPosition.x <= this.x + this.w) && (mousePointPosition.x >= this.x)
+                && (mousePointPosition.y >= this.y) && (mousePointPosition.y <= this.y + this.h);
+    }
+
+    public void AumentarOuDiminuir(int ADw, int ADh) {
+        this.w += ADw;
+        this.h += ADh;
+    }
+
     public void focusdafigura(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setStroke(new BasicStroke(this.Contorno));
