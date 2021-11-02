@@ -1,6 +1,5 @@
 package figures;
 
-import java.awt.Graphics;
 import java.awt.*;
 
 public class Rect extends Figure {
@@ -19,6 +18,16 @@ public class Rect extends Figure {
         g2d.setStroke(new BasicStroke(this.Contorno));
         g2d.drawRect(this.x, this.y, this.w, this.h);
 
+    }
+
+    public boolean clicado(Point mousePointPosition) {
+        return (mousePointPosition.x <= this.x + this.w) && (mousePointPosition.x >= this.x)
+                && (mousePointPosition.y >= this.y) && (mousePointPosition.y <= this.y + this.h);
+    }
+
+    public void AumentarOuDiminuir(int ADw, int ADh) {
+        this.w += ADw;
+        this.h += ADh;
     }
 
     public void focusdafigura(Graphics g) {
