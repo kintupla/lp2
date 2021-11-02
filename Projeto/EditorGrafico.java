@@ -74,7 +74,7 @@ class PackFrame extends JFrame {
                 int gContorno = rand.nextInt(255);
                 int bContorno = rand.nextInt(255);
 
-                if (keyEvent.getKeyChar() == 'r') { // Adiciona para maiúsculo ou minúscula
+                if (keyEvent.getKeyChar() == 'R' || keyEvent.getKeyChar() == 'r') {
                     Rect rectangle = new Rect(mousePosition.x, mousePosition.y, 100, 100, 255, 255, 255, 0, 0, 0, 3);
                     figs.add(rectangle);
                 } else if (keyEvent.getKeyChar() == 'E' || keyEvent.getKeyChar() == 'e') {
