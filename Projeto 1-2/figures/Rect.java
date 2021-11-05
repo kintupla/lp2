@@ -28,6 +28,11 @@ public class Rect extends Figure {
     public void AumentarOuDiminuir(int ADw, int ADh) {
         this.w += ADw;
         this.h += ADh;
+        // Correção diminui figura até sumir e perde o foco.
+        if (this.w < 10) {
+            this.w -= ADw;
+            this.h -= ADh;
+        }
     }
 
     public void focusdafigura(Graphics g) {
