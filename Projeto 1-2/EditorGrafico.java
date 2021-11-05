@@ -1,10 +1,12 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Point;
 import figures.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.List;
 
 class EditorGrafico {
     public static void main(String[] args) {
@@ -14,7 +16,8 @@ class EditorGrafico {
 }
 
 class PackFrame extends JFrame {
-    ArrayList<Figure> figs = new ArrayList<Figure>();
+    // ArrayList<Figure> figs = new ArrayList<Figure>();
+    List<Figure> figs = new CopyOnWriteArrayList<Figure>();
     Figure focus = null;
     Point mousePosition = new Point(0, 0);
     Random rand = new Random();
