@@ -6,11 +6,11 @@ import java.io.*;
 import interfaces.*;
 
 public abstract class Figure implements IVisible {
-	public int x, y;
-	public int w, h;
-	public int r, g, b;
-	public int rContorno, gContorno, bContorno;
-	public int Contorno;
+	protected int x, y;
+	protected int w, h;
+	protected int r, g, b;
+	protected int rContorno, gContorno, bContorno;
+	protected int Contorno;
 
 	public Figure(int x, int y, int w, int h, int r, int g, int b, int rContorno, int gContorno, int bContorno,
 			int Contorno) {
