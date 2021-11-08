@@ -37,5 +37,3 @@ void rect_Print(rect* this) {
     printf("Retangulo de tamanho (%d, %d) na posicao (%d, %d).\n",
            super->width, super->height, super->x, super->y);}
 
-
-//https://github.com/fsantanna-uerj/LP2/blob/main/Exemplos/08-Figure-C/figures.c
