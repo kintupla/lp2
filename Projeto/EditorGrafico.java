@@ -118,9 +118,12 @@ class PackFrame extends JFrame {
 
             }
         });
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
+        int screenWidth = gd.getDisplayMode().getWidth();
+        int screenHeight = gd.getDisplayMode().getHeight();
         this.setTitle("Editor Grafico");
-        this.setSize(500, 500);
+        this.setSize(screenWidth, screenHeight);
     }
 
     public void paint(Graphics g) {
