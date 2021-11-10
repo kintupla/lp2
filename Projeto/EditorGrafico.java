@@ -1,7 +1,11 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import javax.swing.*;
-//import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Point;
 import figures.*;
@@ -16,15 +20,39 @@ class EditorGrafico {
 }
 
 class PackFrame extends JFrame {
-    // ArrayList<Figure> figs = new ArrayList<Figure>();
+    private static final long serialVersionUID = 1L;
     List<Figure> figs = new CopyOnWriteArrayList<Figure>();
     Figure focus = null;
     Point mousePosition = new Point(0, 0);
     Random rand = new Random();
 
-    PackFrame() {
+    @SuppressWarnings("unchecked")
+    public PackFrame() {
+
+        try {
+            FileInputStream file = new FileInputStream("project.bin");
+            ObjectInputStream object = new ObjectInputStream(file);
+
+            this.figs = (List<Figure>) object.readObject();
+
+            object.close();
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
+
         this.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
+            public void windowClosing(WindowEvent windowEvent) {
+                try {
+                    FileOutputStream file = new FileOutputStream("project.bin");
+                    ObjectOutputStream object = new ObjectOutputStream(file);
+
+                    object.writeObject(figs);
+                    object.flush();
+                    object.close();
+                } catch (Exception exception) {
+                    System.out.println(exception.getMessage());
+                }
+
                 System.exit(0);
             }
         });
@@ -118,6 +146,7 @@ class PackFrame extends JFrame {
 
             }
         });
+
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
         int screenWidth = gd.getDisplayMode().getWidth();
