@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.io.*;
 import interfaces.*;
 
-public abstract class Figure implements IVisible {
+public abstract class Figure implements IVisible, Serializable {
 	protected int x, y;
 	protected int w, h;
 	protected int r, g, b;
