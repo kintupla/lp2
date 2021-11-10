@@ -1,7 +1,8 @@
 ## LP2: Projeto Editor Gráfico Vetorial
 
  É um editor que desenha retângulos, elipses, triângulos e segmentos de reta, permite redimensionar, mover, deletar e pintar figura através das teclas.
-
+ 
+ Todas figuras são salvas em um arquivo único após o editor ser fechado (project.bin) e carregam automaticamente ao abrir o editor gráfico.
 
 ## Comandos para as Figuras
 
