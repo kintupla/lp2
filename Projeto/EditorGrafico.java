@@ -1,16 +1,26 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
-import javax.swing.*;
-import java.util.Random;
+import java.awt.Graphics;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Point;
-import figures.*;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
+import buttons.*;
+import javax.swing.JFrame;
+
+import figures.Ellipse;
+import figures.Figure;
+import figures.Line;
+import figures.Rect;
+import figures.Triangle;
 
 class EditorGrafico {
     public static void main(String[] args) {
@@ -21,8 +31,19 @@ class EditorGrafico {
 
 class PackFrame extends JFrame {
     private static final long serialVersionUID = 1L;
+    ArrayList<Button> buttons = new ArrayList<Button>() {
+        {
+            add(new Button(0, new Rect(50, 70, 30, 30, 255, 255, 255, 0, 0, 0, 3)));
+            add(new Button(1, new Ellipse(50, 125, 30, 30, 255, 255, 255, 0, 0, 0, 3)));
+            add(new Button(2, new Triangle(50, 180, 30, 30, 255, 255, 255, 0, 0, 0, 3)));
+            add(new Button(3, new Line(50, 250, 30, 30, 255, 255, 255, 0, 0, 0, 3)));
+
+        }
+    };
     List<Figure> figs = new CopyOnWriteArrayList<Figure>();
     Figure focus = null;
+    Button focusButton = null;
+
     Point mousePosition = new Point(0, 0);
     Random rand = new Random();
 
@@ -60,21 +81,72 @@ class PackFrame extends JFrame {
         this.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent evt) {
                 focus = null;
+
                 if (evt.getButton() == 1) {
                     Point mousePosition = new Point(evt.getX(), evt.getY());
+
                     for (Figure figure : figs) {
                         if (figure.clicado(mousePosition) == true) {
                             focus = figure;
-                        }
 
+                        }
                         if (focus != null) {
                             figs.remove(focus);
                             figs.add(focus);
                         }
                     }
-                    mouseMoved(evt);
-                    repaint();
                 }
+
+                if (focusButton != null && evt.getButton() == 1) {
+                    Point mousePosition = new Point(evt.getX(), evt.getY());
+                    boolean focused = false;
+
+                    for (Button but : buttons) {
+                        if (but.clicado(mousePosition) == true) {
+                            focused = true;
+                        }
+                    }
+
+                    if (focused == false) {
+                        if (focusButton.buttonID == 0) {
+                            Rect rectangle = new Rect(mousePosition.x, mousePosition.y, 100, 100, 255, 255, 255, 0, 0,
+                                    0, 3);
+                            figs.add(rectangle);
+                        } else if (focusButton.buttonID == 1) {
+                            Ellipse ellipse = new Ellipse(mousePosition.x, mousePosition.y, 100, 100, 255, 255, 255, 0,
+                                    0, 0, 3);
+                            figs.add(ellipse);
+                        } else if (focusButton.buttonID == 2) {
+                            Triangle triangle = new Triangle(mousePosition.x, mousePosition.y, 100, 100, 255, 255, 255,
+                                    0, 0, 0, 3);
+                            figs.add(triangle);
+
+                        } else if (focusButton.buttonID == 3) {
+                            Line line = new Line(mousePosition.x, mousePosition.y, 100, 100, 255, 255, 255, 0, 0, 0, 3);
+                            figs.add(line);
+                        }
+
+                    }
+
+                    focusButton = null;
+                }
+
+                if (evt.getButton() == 1) {
+                    Point mousePointPosition = new Point(evt.getX(), evt.getY());
+
+                    for (Button but : buttons) {
+                        if (but.clicado(mousePointPosition) == true) {
+                            focusButton = but;
+                        }
+                    }
+                }
+
+                if (focusButton != null) {
+                    focus = null;
+                }
+
+                mouseMoved(evt);
+                repaint();
             }
         });
 
@@ -162,6 +234,13 @@ class PackFrame extends JFrame {
             if (fig == focus) {
                 focus.focusdafigura(g);
             }
+        }
+        for (Button but : this.buttons) {
+            but.Paint(g);
+
+        }
+        if (focusButton != null) {
+            focusButton.focusdafigura(g);
         }
     }
 
