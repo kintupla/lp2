@@ -5,7 +5,7 @@
  Todas figuras são salvas em um arquivo único após o editor ser fechado (project.bin) e carregam automaticamente ao abrir o editor gráfico.
  
 ## Menu de botões
- É possível criar uma figura através do menu de botões. Para que a criação da figura seja bem sucedida é necessário que o usuário escolha qual figura deseja criar no menu de botões e depois é necessário clicar no espaço de desenho. Caso o usuário queira criar uma nova figura, é necessário que repita o procedimento.
+ É possível criar figuras através do menu de botões. Para que a criação da figura seja bem sucedida é necessário que o usuário escolha qual figura deseja criar no menu e depois clicar no espaço de desenho. Caso o usuário queira criar uma nova figura, é necessário que repita o procedimento.
 
 ## Comandos para as Figuras
 
