@@ -108,20 +108,20 @@ class PackFrame extends JFrame {
                     }
 
                     if (focused == false) {
-                        if (focusButton.buttonID == 0) {
+                        if (focusButton.getterButtonID() == 0) {
                             Rect rectangle = new Rect(mousePosition.x, mousePosition.y, 100, 100, 255, 255, 255, 0, 0,
                                     0, 3);
                             figs.add(rectangle);
-                        } else if (focusButton.buttonID == 1) {
+                        } else if (focusButton.getterButtonID() == 1) {
                             Ellipse ellipse = new Ellipse(mousePosition.x, mousePosition.y, 100, 100, 255, 255, 255, 0,
                                     0, 0, 3);
                             figs.add(ellipse);
-                        } else if (focusButton.buttonID == 2) {
+                        } else if (focusButton.getterButtonID() == 2) {
                             Triangle triangle = new Triangle(mousePosition.x, mousePosition.y, 100, 100, 255, 255, 255,
                                     0, 0, 0, 3);
                             figs.add(triangle);
 
-                        } else if (focusButton.buttonID == 3) {
+                        } else if (focusButton.getterButtonID() == 3) {
                             Line line = new Line(mousePosition.x, mousePosition.y, 100, 100, 255, 255, 255, 0, 0, 0, 3);
                             figs.add(line);
                         }
