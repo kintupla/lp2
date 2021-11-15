@@ -6,9 +6,9 @@ import interfaces.*;
 import figures.*;
 
 public class Button implements IVisible {
-    public int x, y;
-    public int buttonID;
-    public Figure figureButton;
+    private int x, y;
+    private int buttonID;
+    private Figure figureButton;
 
     public Button(int buttonID, Figure figureButton) {
         this.figureButton = figureButton;
@@ -16,6 +16,10 @@ public class Button implements IVisible {
         this.y = 60 + 55 * buttonID;
         this.x = 40;
 
+    }
+
+    public int getterButtonID() {
+        return this.buttonID;
     }
 
     public void Paint(Graphics g) {
