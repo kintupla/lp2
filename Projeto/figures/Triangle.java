@@ -33,9 +33,10 @@ public class Triangle extends Figure {
 
     }
 
+    // https://www.geeksforgeeks.org/java-string-contains-method-example/
     public boolean clicado(Point mousePointPosition) {
-        return (mousePointPosition.x <= this.x + this.w) && (mousePointPosition.x >= this.x)
-                && (mousePointPosition.y >= this.y) && (mousePointPosition.y <= this.y + this.h);
+        return this.triangle.contains(mousePointPosition);
+
     }
 
     public void AumentarOuDiminuir(int ADw, int ADh) {
