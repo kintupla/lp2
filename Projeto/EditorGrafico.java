@@ -90,10 +90,10 @@ class PackFrame extends JFrame {
                             focus = figure;
 
                         }
-                        if (focus != null) {
-                            figs.remove(focus);
-                            figs.add(focus);
-                        }
+                    }
+                    if (focus != null) {
+                        figs.remove(focus);
+                        figs.add(focus);
                     }
                 }
 
@@ -105,6 +105,7 @@ class PackFrame extends JFrame {
                         if (but.clicado(mousePosition) == true) {
                             focused = true;
                         }
+
                     }
 
                     if (focused == false) {
@@ -128,9 +129,8 @@ class PackFrame extends JFrame {
 
                     }
 
-                    focusButton = null;
                 }
-
+                focusButton = null;
                 if (evt.getButton() == 1) {
                     Point mousePointPosition = new Point(evt.getX(), evt.getY());
 
@@ -138,11 +138,13 @@ class PackFrame extends JFrame {
                         if (but.clicado(mousePointPosition) == true) {
                             focusButton = but;
                         }
+
                     }
                 }
 
                 if (focusButton != null) {
                     focus = null;
+
                 }
 
                 mouseMoved(evt);
@@ -209,6 +211,7 @@ class PackFrame extends JFrame {
                         focus.drag(-10, 0);
                     } else if (keyEvent.getKeyCode() == KeyEvent.VK_DELETE) {
                         figs.remove(focus);
+                        focus = null;
                     } else if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT) {
                         focus.drag(10, 0);
                     }
@@ -231,13 +234,12 @@ class PackFrame extends JFrame {
         super.paint(g);
         for (Figure fig : this.figs) {
             fig.Paint(g);
-            if (fig == focus) {
-                focus.focusdafigura(g);
-            }
         }
         for (Button but : this.buttons) {
             but.Paint(g);
-
+        }
+        if (focus != null) {
+            focus.focusdafigura(g);
         }
         if (focusButton != null) {
             focusButton.focusdafigura(g);
